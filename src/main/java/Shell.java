@@ -17,7 +17,8 @@ public class Shell {
                 new CommandEcho(),
                 new CommandCat(),
                 new CommandWc(),
-                new CommandAssign()
+                new CommandAssign(),
+                new CommandGrep()
         };
 
         Map<String, Command> availableCommands = new HashMap<>();
@@ -45,7 +46,6 @@ public class Shell {
                 commandsWithArgs = parser.run(tokens);
             } catch (TextProcessingError e) {
                 System.out.println(e);
-                System.out.print("shell: ");
                 continue;
             }
 
