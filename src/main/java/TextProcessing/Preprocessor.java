@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public class Preprocessor {
     private class Variable {
-        public int firstChar;
-        public int lastChar;
+        public final int firstChar;
+        public final int lastChar;
         Variable (int firstChar, int lastChar) {
             this.firstChar = firstChar;
             this.lastChar = lastChar;

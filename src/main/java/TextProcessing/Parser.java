@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class Parser {
     /**
-     * @param tokens
+     * @param tokens that have been processed by Lexer and Preprocessor
      * @return list of commands with args
      * @throws TextProcessingError
      */

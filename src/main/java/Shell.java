@@ -8,6 +8,11 @@ import java.util.*;
 
 /**
  * @author kostya
+ *
+ * This class represents a program.
+ * It contains the creation of entities required to work (like a commands, lexer, parser, ect.)
+ * Also it contains the main loop, wich read user input, process it, and output a results.
+ *
  */
 public class Shell {
     public static void main(String[] args) throws IOException {

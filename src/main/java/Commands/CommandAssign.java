@@ -26,7 +26,7 @@ public class CommandAssign implements Command {
             feature.setResults(new ArrayList<>());
             return feature;
         }
-        env.put(feature.getArgs().get(0),feature.getArgs().get(1));
+        env.put(feature.getArgs().get(0), feature.getArgs().get(1));
         feature.setResults(new ArrayList<>());
         return feature;
     }

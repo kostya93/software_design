@@ -14,6 +14,8 @@ public interface Command {
     String getName();
 
     /**
+     * Executes command and returns an object containing arguments for a next command and a list of errors.
+     *
      * @param feature contains results of previous command in feature.getResults()
      * @param env its global environment
      * @return Feature, with contains args for next command and

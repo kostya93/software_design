@@ -12,7 +12,11 @@ public class Feature {
     private List<String> args;
 
     /**
-     * @return agrs
+     * @return agrs - arguments for command wich intended directly to this command
+     * Example: echo "test_1.txt" "test_2.txt" | grep -A 5
+     *  command echo returned feature, where
+     *      results = ["test_1.txt", "test_2.txt"]
+     *      args = ["-A", "5"]
      */
     public List<String> getArgs() {
         return args;
