@@ -2,6 +2,8 @@ package Commands;
 
 import java.util.*;
 
+import static Commands.FileSystemUtility.getCurrentWorkingDirectory;
+
 /**
  * Command pwd printing current dir
  */
@@ -18,7 +20,7 @@ public class CommandPwd implements Command {
      */
     @Override
     public Feature run(Feature feature, Map<String, String> env) {
-        feature.setResults(new ArrayList<>(Collections.singletonList(System.getProperty("user.dir"))));
+        feature.setResults(new ArrayList<>(Collections.singletonList(getCurrentWorkingDirectory())));
         return feature;
     }
 }

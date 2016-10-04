@@ -3,11 +3,16 @@ package Commands;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static Commands.FileSystemUtility.getCurrentWorkingDirectory;
+import static Commands.FileSystemUtility.resolveFilePath;
 
 /**
  * Command cat print content of file
@@ -30,13 +35,14 @@ public class CommandCat implements Command {
     public Feature run(Feature feature, Map<String, String> env) {
         ArrayList<String> result = new ArrayList<>();
         Stream.concat(feature.getArgs().stream(), feature.getResults().stream()).forEach(file -> {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            Path filePath = resolveFilePath(file);
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath.toString()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     result.add(line);
                 }
             } catch (IOException x) {
-                feature.addError("Wrong file" + file);
+                feature.addError("Wrong file" + filePath.toString());
             }
         });
         feature.setResults(result);
