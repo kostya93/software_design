@@ -18,7 +18,9 @@ public class Shell {
                 new CommandCat(),
                 new CommandWc(),
                 new CommandAssign(),
-                new CommandGrep()
+                new CommandGrep(),
+                new CommandLs(),
+                new CommandCd()
         };
 
         Map<String, Command> availableCommands = new HashMap<>();

@@ -3,9 +3,12 @@ package Commands;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import static Commands.FileSystemUtility.resolveFilePath;
 
 /**
  * Command wc counts the number of words, lines, chars of input file
@@ -35,7 +38,8 @@ public class CommandWc implements Command {
         final int[] lines = {0};
         final int[] chars = {0};
         Stream.concat(feature.getArgs().stream(), feature.getResults().stream()).forEach(file -> {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            Path filePath = resolveFilePath(file);
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath.toString()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     lines[0]++;
@@ -44,7 +48,7 @@ public class CommandWc implements Command {
                 }
                 result.add(String.format("%d %d %d %s", words[0], lines[0], chars[0], file));
             } catch (IOException x) {
-                feature.addError("Wrong file: " + file);
+                feature.addError("Wrong file: " + filePath.toString());
             }
         });
         feature.setResults(result);
