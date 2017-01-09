@@ -100,12 +100,13 @@ public class Messenger {
      * Start listen incoming messages
      * @throws IOException
      */
-    public void start() throws IOException {
+    public boolean start() throws IOException {
         serverSocket = new ServerSocket(port);
         serverThread = new Thread(this::runServer);
         executor = Executors.newCachedThreadPool();
         serverThread.start();
         logger.log(Level.INFO, "start messenger: " + this);
+        return true;
     }
 
     private void runServer() {
@@ -140,9 +141,9 @@ public class Messenger {
      * Stop listen incoming messages
      * @throws IOException
      */
-    public void stop() throws IOException {
+    public boolean stop() throws IOException {
         if (serverSocket == null) {
-            return;
+            return false;
         }
 
         serverSocket.close();
@@ -152,6 +153,7 @@ public class Messenger {
         executor = null;
         serverSocket = null;
         serverThread = null;
+        return true;
     }
 
     @Override

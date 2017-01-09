@@ -41,7 +41,7 @@ public class Message {
 
     /**
      * Return local senders port
-     * @return lical senders port
+     * @return local senders port
      */
     short getPort() {
         return port;
@@ -50,5 +50,25 @@ public class Message {
     @Override
     public String toString() {
         return "name = " + name + "; text = " + text + "; port = " + port;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Message message = (Message) o;
+
+        return port == message.port
+                && name.equals(message.name)
+                && text.equals(message.text);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + text.hashCode();
+        result = 31 * result + (int) port;
+        return result;
     }
 }
