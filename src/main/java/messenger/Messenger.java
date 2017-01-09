@@ -13,7 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by kostya on 07.01.2017.
+ * Represents a messenger.
+ * Messenger manage all chats and processing
+ * incoming messages.
  */
 
 public class Messenger {
@@ -25,6 +27,12 @@ public class Messenger {
     private Thread serverThread;
     private ExecutorService executor;
 
+    /**
+     * Create a messenger with port and name
+     * @param port - local port, where messenger will listen
+     *             incoming messages
+     * @param name initial user name
+     */
     public Messenger(short port, String name) {
         this.port = port;
         this.name = name;
@@ -36,31 +44,62 @@ public class Messenger {
         return chat;
     }
 
+    /**
+     * Add new chat in chatlist
+     * @param chat - chat to add in chatlist
+     */
     public void addChat(Chat chat) {
         chats.put(chat.getRemoteAddress(), chat);
         logger.log(Level.INFO, "add chat: " + chat);
     }
 
+    /**
+     * Return a chat by InetSocketAddress.
+     * null if chat with this InetSocketAddress doesnt exist.
+     * @param remoteAddress address of desired chat
+     * @return chat with specified InetSocketAddress or null,
+     * if such chat doesnt exist
+     */
     public Chat getChat(InetSocketAddress remoteAddress) {
         return chats.get(remoteAddress);
     }
 
+    /**
+     * Rteurn current user name
+     * @return current user name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set user name
+     * @param name - desired user name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Return all chats
+     * @return map from InetSocketAddress to chat
+     */
     public Map<InetSocketAddress, Chat> getChats() {
         return chats;
     }
 
+    /**
+     * Return local port
+     * @return local port
+     */
     public short getPort() {
         return port;
     }
 
+    /**
+     * Start listen incoming messages
+     * @throws IOException
+     */
     public void start() throws IOException {
         serverSocket = new ServerSocket(port);
         serverThread = new Thread(this::runServer);
@@ -97,6 +136,10 @@ public class Messenger {
         }
     }
 
+    /**
+     * Stop listen incoming messages
+     * @throws IOException
+     */
     public void stop() throws IOException {
         if (serverSocket == null) {
             return;
