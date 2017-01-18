@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * Created by kostya on 24.09.2016.
  */
 public class PreprocessorTest {
-    Preprocessor preprocessor = new Preprocessor();
+    private Preprocessor preprocessor = Preprocessor.getInstance();
 
     @Test
     public void testRunSimple() {

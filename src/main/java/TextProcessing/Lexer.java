@@ -10,6 +10,9 @@ import java.util.List;
  * Output [echo, "asdas a, asdsda", ' xv xcv"]
  */
 public class Lexer {
+    private static final Lexer INSTANCE = new Lexer();
+    private Lexer() {}
+
     /**
      * @param line - input text of which will be split into tokens
      * @return list of tokens
@@ -86,5 +89,9 @@ public class Lexer {
         }
 
         return result;
+    }
+
+    public static Lexer getInstance() {
+        return INSTANCE;
     }
 }

@@ -9,6 +9,9 @@ import java.util.List;
  * ExternalCommandExecutor execute external command
  */
 public class ExternalCommandExecutor {
+    private static final ExternalCommandExecutor INSTANCE = new ExternalCommandExecutor();
+    private ExternalCommandExecutor() {}
+
     /**
      * @param command - external command to execute
      * @param feature - params to external command
@@ -32,5 +35,9 @@ public class ExternalCommandExecutor {
         }
         feature.setResults(result);
         return feature;
+    }
+
+    public static ExternalCommandExecutor getInstance() {
+        return INSTANCE;
     }
 }
