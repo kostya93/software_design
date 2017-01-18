@@ -10,6 +10,9 @@ import java.util.Map;
  * and transform assignment from "key=value" to "assign key value"
  */
 public class Preprocessor {
+    private static final Preprocessor INSTANCE = new Preprocessor();
+    private Preprocessor() {}
+
     private class Variable {
         public int firstChar;
         public int lastChar;
@@ -82,5 +85,9 @@ public class Preprocessor {
             result = newResult;
         }
         return result;
+    }
+
+    public static Preprocessor getInstance() {
+        return INSTANCE;
     }
 }

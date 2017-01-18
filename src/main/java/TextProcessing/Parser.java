@@ -21,6 +21,9 @@ import java.util.List;
  *      ]
  */
 public class Parser {
+    private static final Parser INSTANCE = new Parser();
+    private Parser() {}
+
     /**
      * @param tokens
      * @return list of commands with args
@@ -53,5 +56,9 @@ public class Parser {
             }
         }
         return result;
+    }
+
+    public static Parser getInstance() {
+        return INSTANCE;
     }
 }

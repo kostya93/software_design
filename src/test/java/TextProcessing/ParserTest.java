@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * Created by kostya on 24.09.2016.
  */
 public class ParserTest {
-    Parser parser = new Parser();
+    Parser parser = Parser.getInstance();
 
     @Test
     public void testRunSimple() throws TextProcessingError {

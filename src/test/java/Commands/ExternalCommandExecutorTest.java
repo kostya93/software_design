@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * Created by kostya on 24.09.2016.
  */
 public class ExternalCommandExecutorTest {
-    ExternalCommandExecutor externalCommandExecutor = new ExternalCommandExecutor();
+    private ExternalCommandExecutor externalCommandExecutor = ExternalCommandExecutor.getInstance();
 
     @Test
     public void testRunWithWrongArgs() {
